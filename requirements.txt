@@ -1,0 +1,3 @@
+# Full local app install: UI, ML detectors, PDF support, and Windows exe builder.
+# This replaces the old base/ml/build split so there is only one requirements file.
+-e .[ml,pdf,build]
