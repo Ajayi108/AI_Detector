@@ -1,0 +1,15 @@
+
+[binoculars]
+binoculars @ git+https://github.com/ahans30/Binoculars.git
+
+[build]
+pyinstaller>=6.8
+
+[ml]
+torch>=2.2
+transformers>=4.42
+sentencepiece>=0.2
+safetensors>=0.4
+
+[pdf]
+pypdf>=4.0

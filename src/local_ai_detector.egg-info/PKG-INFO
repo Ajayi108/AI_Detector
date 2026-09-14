@@ -1,3 +1,46 @@
+Metadata-Version: 2.4
+Name: local-ai-detector
+Version: 0.1.0
+Summary: Local multi-engine AI text detector desktop app
+Author: AI Detector
+License: MIT License
+        
+        Copyright (c) 2026 Ikponmwosa Ajayi
+        
+        Permission is hereby granted, free of charge, to any person obtaining a copy
+        of this software and associated documentation files (the "Software"), to deal
+        in the Software without restriction, including without limitation the rights
+        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        copies of the Software, and to permit persons to whom the Software is
+        furnished to do so, subject to the following conditions:
+        
+        The above copyright notice and this permission notice shall be included in all
+        copies or substantial portions of the Software.
+        
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+        SOFTWARE.
+        
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Provides-Extra: ml
+Requires-Dist: torch>=2.2; extra == "ml"
+Requires-Dist: transformers>=4.42; extra == "ml"
+Requires-Dist: sentencepiece>=0.2; extra == "ml"
+Requires-Dist: safetensors>=0.4; extra == "ml"
+Provides-Extra: pdf
+Requires-Dist: pypdf>=4.0; extra == "pdf"
+Provides-Extra: binoculars
+Requires-Dist: binoculars @ git+https://github.com/ahans30/Binoculars.git ; extra == "binoculars"
+Provides-Extra: build
+Requires-Dist: pyinstaller>=6.8; extra == "build"
+Dynamic: license-file
+
 # AI Detector
 
 Local-first AI text detector prototype for Windows desktop use.
@@ -6,7 +49,7 @@ The app is designed around a multi-detector engine:
 
 - **Desklib DeBERTa Detector** as the main local ML detector.
 - **ADAL RoBERTa Detector** as a second transformer-based opinion.
-- **Binoculars-Style Deep Scan** as an optional slower language-model comparison detector.
+- **Binoculars Deep Scan** as an optional slower research detector.
 - **Local Style Signals** as a tiny advisory fallback so the app can run before heavy ML models are installed.
 
 The product should report **AI likelihood**, not proof. AI detectors can be wrong, especially with short text, paraphrased text, non-native English, technical writing, and new LLMs.
@@ -16,7 +59,7 @@ The product should report **AI likelihood**, not proof. AI detectors can be wron
 This repository now contains:
 
 - A detector engine that chunks text and compares detector outputs.
-- Detector adapters for Desklib, ADAL, Binoculars-style scanning, and a small advisory fallback.
+- Detector adapters for Desklib, ADAL, Binoculars, and a small advisory fallback.
 - A no-dependency advisory detector for development/testing.
 - A Tkinter desktop UI.
 - A CLI for local analysis and JSON reports.
@@ -111,9 +154,9 @@ Default production candidate. MIT-licensed model on Hugging Face. Large but prac
 
 Second opinion detector. Useful for disagreement checks and adversarial robustness experiments.
 
-### Binoculars-Style Deep Scan
+### Binoculars
 
-Optional deep scan. It uses `distilgpt2` and `gpt2` by default so it works on the current Python environment. The official Binoculars package is not installed by default because it currently pulls an older `tokenizers` build that fails on Python 3.14 without Rust.
+Research-grade optional deep scan. It is slower/heavier and its raw score is not treated as a probability by this app.
 
 ### Local Style Signals
 
